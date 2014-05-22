@@ -42,7 +42,7 @@ function inspectlet_page_alter(&$page) {
     . "</script>";
 
   drupal_add_js(
-    script,
+    $script,
     array(
       'scope' => 'footer',
     )
