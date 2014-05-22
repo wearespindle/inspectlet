@@ -53,3 +53,34 @@ function inspectlet_page_alter(&$page) {
     )
   );
 }
+
+/**
+ * Implements hook_menu().
+ */
+function inspectlet_menu() {
+  $items = array();
+  
+  $items['admin/config/system/inspectlet'] = array(
+    'title' => 'Inspectlet',
+    'description' => t('Enter your tracking id here.'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('inspectlet_settings_form'),
+    'access arguments' => array('administer inspectlet'),
+    'file' => 'inspectlet.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+  );
+  
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+ function inspectlet_permission() {
+   return array(
+     'administer inspectlet' => array(
+       'title' => t('Administer inspectlet.'),
+       'description' => t('Perform maintenance tasks for inspectlet.'),
+     ),
+   );
+ }
