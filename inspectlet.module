@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * Implements hook_help().
+ */
+function inspectlet_help($path, $arg) {
+  switch ($path) {
+    case 'admin/config/system/inspectlet':
+      return t(
+        '<a href="@inspect_url">Inspeclet</a> is a free (registration required) website user-interaction suite for your site.', 
+        array(
+          '@inspect_url' => 'http://www.inspectlet.com/'
+        )
+      );
+  }
+}
+
+/**
+ * Implements hook_page_alter() to insert Javascript into the page.
+ */
+function inspectlet_page_alter(&$page) {
+  $id = variable_get('inspectlet_id');
+  
+  $script = '<script type="text/javascript" id="inspectletjs">'
+    . 'window.__insp = window.__insp || [];' . "\n"
+    . "__insp.push(['wid', ${id}]);\n"
+    . "(function() {\n"
+    . "  function __ldinsp(){\n"
+    . "var insp = document.createElement('script');\n"
+    . "insp.type = 'text/javascript';\n"
+    . "insp.async = true;\n"
+    . "insp.id = \"inspsync\";\n"
+    . "insp.src = ('https:' == document.location.protocol ? 'https' : 'http') "
+    . "+ '://cdn.inspectlet.com/inspectlet.js';\n"
+    . "var x = document.getElementsByTagName('script')[0];\n"
+    . "x.parentNode.insertBefore(insp, x);\n}\n"
+    . "if (window.attachEvent){\n"
+    . "window.attachEvent('onload', __ldinsp);\n"
+    . "}else{\n"
+    . "window.addEventListener('load', __ldinsp, false);\n"
+    . "}})();\n"
+    . "</script>";
+
+  drupal_add_js(
+    script,
+    array(
+      'scope' => 'footer',
+    )
+  );
+}
