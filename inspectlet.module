@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Implements the necessary hook implementations.
+ */
+
+/**
  * Implements hook_help().
  */
 function inspectlet_help($path, $arg) {
