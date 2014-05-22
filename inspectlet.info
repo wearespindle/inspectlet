@@ -1,1 +1,3 @@
 name = Inspectlet
+description = Track user click through inspectlet.com
+core = 7.x
