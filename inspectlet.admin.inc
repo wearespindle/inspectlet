@@ -16,5 +16,5 @@ function inspectlet_settings_form($form, &$form_state) {
     '#default_value' => variable_get('inspectlet_id'),
   );
   
-  return system_setting_form($form);
+  return system_settings_form($form);
 }
