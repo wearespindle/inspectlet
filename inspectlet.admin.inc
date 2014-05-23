@@ -10,9 +10,9 @@
  */
 function inspectlet_settings_form($form, &$form_state) {
   $form['inspectlet_code'] = array(
-    '#type' => 'textfield',
+    '#type' => 'textarea',
     '#title' => t('Inspectlet code'),
-    '#description' => t('Insert the wid code from your snippet here.'),
+    '#description' => t('Insert your Inspectlet snippet here.'),
     '#default_value' => variable_get('inspectlet_code'),
   );
   

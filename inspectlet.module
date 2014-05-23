@@ -24,28 +24,10 @@ function inspectlet_help($path, $arg) {
  * Implements hook_page_alter() to insert Javascript into the page.
  */
 function inspectlet_page_alter(&$page) {
-  $id = variable_get('inspectlet_code');
+  $code = variable_get('inspectlet_code');
   
-  $script = 'window.__insp = window.__insp || [];' . "\n"
-    . "__insp.push(['wid', ${id}]);\n"
-    . "(function() {\n"
-    . "  function __ldinsp(){\n"
-    . "var insp = document.createElement('script');\n"
-    . "insp.type = 'text/javascript';\n"
-    . "insp.async = true;\n"
-    . "insp.id = \"inspsync\";\n"
-    . "insp.src = ('https:' == document.location.protocol ? 'https' : 'http') "
-    . "+ '://cdn.inspectlet.com/inspectlet.js';\n"
-    . "var x = document.getElementsByTagName('script')[0];\n"
-    . "x.parentNode.insertBefore(insp, x);\n}\n"
-    . "if (window.attachEvent){\n"
-    . "window.attachEvent('onload', __ldinsp);\n"
-    . "}else{\n"
-    . "window.addEventListener('load', __ldinsp, false);\n"
-    . "}})();\n";
-
   drupal_add_js(
-    $script,
+    $code,
     array(
       'scope' => 'footer',
       'type' => 'inline',
