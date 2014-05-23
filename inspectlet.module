@@ -25,6 +25,11 @@ function inspectlet_help($path, $arg) {
  */
 function inspectlet_page_alter(&$page) {
   $code = variable_get('inspectlet_code');
+
+  $code = preg_replace('/<!-- Begin Inspectlet Embed Code -->/', '', $code);
+  $code = preg_replace('/<!-- End Inspectlet Embed Code -->/', '', $code);
+  $code = preg_replace('/<script.*?>/', '', $code);
+  $code = preg_replace('/<\/script>/', '', $code);
   
   drupal_add_js(
     $code,
