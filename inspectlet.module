@@ -10,7 +10,7 @@
  */
 function inspectlet_help($path, $arg) {
   switch ($path) {
-    case 'admin/config/system/inspectlet':
+    case 'admin/help/inspectlet':
       return t(
         '<a href="@inspect_url">Inspeclet</a> is a free (registration required) website user-interaction suite for your site.', 
         array(
@@ -24,10 +24,9 @@ function inspectlet_help($path, $arg) {
  * Implements hook_page_alter() to insert Javascript into the page.
  */
 function inspectlet_page_alter(&$page) {
-  $id = variable_get('inspectlet_id');
+  $id = variable_get('inspectlet_code');
   
-  $script = '<script type="text/javascript" id="inspectletjs">'
-    . 'window.__insp = window.__insp || [];' . "\n"
+  $script = 'window.__insp = window.__insp || [];' . "\n"
     . "__insp.push(['wid', ${id}]);\n"
     . "(function() {\n"
     . "  function __ldinsp(){\n"
@@ -43,13 +42,13 @@ function inspectlet_page_alter(&$page) {
     . "window.attachEvent('onload', __ldinsp);\n"
     . "}else{\n"
     . "window.addEventListener('load', __ldinsp, false);\n"
-    . "}})();\n"
-    . "</script>";
+    . "}})();\n";
 
   drupal_add_js(
     $script,
     array(
       'scope' => 'footer',
+      'type' => 'inline',
     )
   );
 }

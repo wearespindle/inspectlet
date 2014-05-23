@@ -9,5 +9,5 @@
  * Implements hook_uninstall().
  */
 function inspectlet_uninstall() {
-    variable_del('inspectlet_id');
+    variable_del('inspectlet_code');
 }
