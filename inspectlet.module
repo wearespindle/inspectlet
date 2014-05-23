@@ -60,8 +60,8 @@ function inspectlet_menu() {
 function inspectlet_permission() {
   return array(
     'administer inspectlet' => array(
-       'title' => t('Administer inspectlet.'),
-       'description' => t('Perform maintenance tasks for inspectlet.'),
+      'title' => t('Administer inspectlet.'),
+      'description' => t('Perform maintenance tasks for inspectlet.'),
     ),
   );
 }
