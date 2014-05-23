@@ -11,12 +11,8 @@
 function inspectlet_help($path, $arg) {
   switch ($path) {
     case 'admin/help/inspectlet':
-      return t(
-        '<a href="@inspect_url">Inspeclet</a> is a free (registration required) website user-interaction suite for your site.', 
-        array(
-          '@inspect_url' => 'http://www.inspectlet.com/'
-        )
-      );
+      return 
+        '<a href="http://www.inspectlet.com/">Inspeclet</a> is a free (registration required) website user-interaction suite for your site.';
   }
 }
 
