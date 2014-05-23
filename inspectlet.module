@@ -11,8 +11,7 @@
 function inspectlet_help($path, $arg) {
   switch ($path) {
     case 'admin/help/inspectlet':
-      return 
-        '<a href="http://www.inspectlet.com/">Inspeclet</a> is a free (registration required) website user-interaction suite for your site.';
+      return '<a href="http://www.inspectlet.com/">Inspeclet</a> is a free (registration required) website user-interaction suite for your site.';
   }
 }
 
@@ -26,7 +25,7 @@ function inspectlet_page_alter(&$page) {
   $code = preg_replace('/<!-- End Inspectlet Embed Code -->/', '', $code);
   $code = preg_replace('/<script.*?>/', '', $code);
   $code = preg_replace('/<\/script>/', '', $code);
-  
+
   drupal_add_js(
     $code,
     array(
@@ -41,7 +40,7 @@ function inspectlet_page_alter(&$page) {
  */
 function inspectlet_menu() {
   $items = array();
-  
+
   $items['admin/config/system/inspectlet'] = array(
     'title' => 'Inspectlet',
     'description' => 'Enter your tracking id here.',
@@ -51,18 +50,18 @@ function inspectlet_menu() {
     'file' => 'inspectlet.admin.inc',
     'type' => MENU_LOCAL_TASK,
   );
-  
+
   return $items;
 }
 
 /**
  * Implements hook_permission().
  */
- function inspectlet_permission() {
-   return array(
-     'administer inspectlet' => array(
+function inspectlet_permission() {
+  return array(
+    'administer inspectlet' => array(
        'title' => t('Administer inspectlet.'),
        'description' => t('Perform maintenance tasks for inspectlet.'),
-     ),
-   );
- }
+    ),
+  );
+}
