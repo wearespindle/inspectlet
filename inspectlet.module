@@ -16,7 +16,7 @@ function inspectlet_help($path, $arg) {
 }
 
 /**
- * Implements hook_page_alter() to insert Javascript into the page.
+ * Implements hook_page_alter().
  */
 function inspectlet_page_alter(&$page) {
   $code = variable_get('inspectlet_code');
