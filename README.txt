@@ -1,0 +1,4 @@
+- Enable the module
+- So to /admin/config/system/inspectlet
+- Paste your Inspeclet code in there.
+- Wait for your data to come in.
