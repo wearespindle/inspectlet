@@ -19,12 +19,7 @@ function inspectlet_help($path, $arg) {
  * Implements hook_page_alter().
  */
 function inspectlet_page_alter(&$page) {
-  $code = variable_get('inspectlet_code');
-
-  $code = preg_replace('/<!-- Begin Inspectlet Embed Code -->/', '', $code);
-  $code = preg_replace('/<!-- End Inspectlet Embed Code -->/', '', $code);
-  $code = preg_replace('/<script.*?>/', '', $code);
-  $code = preg_replace('/<\/script>/', '', $code);
+  $code = variable_get('inspectlet_js');
 
   drupal_add_js(
     $code,
