@@ -15,6 +15,7 @@ function inspectlet_settings_form($form, &$form_state) {
     '#description' => t('Insert your Inspectlet snippet here.'),
     '#default_value' => variable_get('inspectlet_code'),
   );
+  $form['#submit'][] = 'inspectlet_settings_form_submit';
 
   return system_settings_form($form);
 }
@@ -22,7 +23,7 @@ function inspectlet_settings_form($form, &$form_state) {
 /**
  * Strips out the HTML comments and the <script> tags.
  */
-function inspectlet_settings_form_validate($form, &$form_state) {
+function inspectlet_settings_form_submit($form, &$form_state) {
   $code = $form_state['values']['inspectlet_code'];
 
   $code = preg_replace('/<!-- Begin Inspectlet Embed Code -->/', '', $code);
