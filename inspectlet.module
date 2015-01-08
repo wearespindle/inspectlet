@@ -18,7 +18,7 @@ function inspectlet_help($path, $arg) {
 /**
  * Implements hook_page_alter().
  */
-function inspectlet_page_alter(&$page) {
+function inspectlet_page_build(&$page) {
   $code = variable_get('inspectlet_js');
 
   drupal_add_js(
