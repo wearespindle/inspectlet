@@ -43,7 +43,7 @@ function inspectlet_menu() {
     'page arguments' => array('inspectlet_settings_form'),
     'access arguments' => array('administer inspectlet'),
     'file' => 'inspectlet.admin.inc',
-    'type' => MENU_LOCAL_TASK,
+    'type' => MENU_NORMAL_ITEM,
   );
 
   return $items;
