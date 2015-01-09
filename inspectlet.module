@@ -54,6 +54,7 @@ function inspectlet_permission() {
     'administer inspectlet' => array(
       'title' => t('Administer inspectlet.'),
       'description' => t('Perform maintenance tasks for inspectlet.'),
+      'restrict access' => TRUE,
     ),
   );
 }
