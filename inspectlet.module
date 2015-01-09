@@ -21,12 +21,9 @@ function inspectlet_help($path, $arg) {
 function inspectlet_page_build(&$page) {
   $code = variable_get('inspectlet_js');
 
-  drupal_add_js(
-    $code,
-    array(
-      'scope' => 'footer',
-      'type' => 'inline',
-    )
+  $page['footer']['#attached']['js'][] = array(
+    'data' => $code,
+    'type' => 'inline',
   );
 }
 
