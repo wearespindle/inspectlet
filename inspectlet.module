@@ -11,12 +11,12 @@
 function inspectlet_help($path, $arg) {
   switch ($path) {
     case 'admin/help/inspectlet':
-      return '<a href="http://www.inspectlet.com/">Inspeclet</a> is a free (registration required) website user-interaction suite for your site.';
+      return t('<a href="http://www.inspectlet.com/">Inspeclet</a> is a free (registration required) website user-interaction suite for your site.');
   }
 }
 
 /**
- * Implements hook_page_alter().
+ * Implements hook_page_build().
  */
 function inspectlet_page_build(&$page) {
   $code = variable_get('inspectlet_js');
