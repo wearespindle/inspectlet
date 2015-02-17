@@ -1,3 +1,5 @@
 name = Inspectlet
 description = Track user click through inspectlet.com
 core = 7.x
+configure = admin/config/system/inspectlet
+files[] = tests/inspectlet.test

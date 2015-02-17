@@ -1,0 +1,39 @@
+<?php
+
+class VoysCustomHeaderTestCase extends DrupalWebTestCase {
+
+  protected $privilegedUser;
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Inspeclet',
+      'description' => t('Tests the Inspectlet module.'),
+      'group' => 'Inspectlet',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp('inspectlet');
+  }
+
+  public function testConfiguration() {
+    $this->privilegedUser = $this->drupalCreateUser(
+      array(
+        'administer inspectlet', 
+        'administer modules',
+        'access administration pages'
+      )
+    );
+    $this->drupalLogin($this->privilegedUser);
+
+    $this->drupalGet('admin/modules');
+    $this->assertResponse('200', 'Got a 200 OK header');
+    $this->assertLinkByHref('?q=admin/config/system/inspectlet', 0, 'Inspectlet config found on module page');
+    $this->assertLink('Configure', 0, 'Link text ok');
+
+    $this->drupalGet('admin/config');
+    $this->assertResponse('200', 'Got a 200 OK header');
+    $this->assertLinkByHref('?q=admin/config/system/inspectlet', 0, 'Inspectlet config found on module page');
+    $this->assertLink('Inspectlet', 0, 'Link text ok');
+  }
+}
