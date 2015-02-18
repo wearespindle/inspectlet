@@ -14,6 +14,7 @@ function inspectlet_settings_form($form, &$form_state) {
     '#title' => t('Inspectlet code'),
     '#description' => t('Insert your Inspectlet snippet here.'),
     '#default_value' => variable_get('inspectlet_code'),
+    '#rows' => 20,
   );
   $form['#submit'][] = 'inspectlet_settings_form_submit';
 
