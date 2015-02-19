@@ -27,13 +27,29 @@ class InspectletTestCase extends DrupalWebTestCase {
     $this->drupalLogin($this->privilegedUser);
 
     $this->drupalGet('admin/modules');
-    $this->assertResponse('200', 'Got a 200 OK header');
-    $this->assertLinkByHref('admin/config/system/inspectlet', 0, 'Inspectlet config found on module page');
-    $this->assertLink('Configure', 0, 'Link text ok');
+    $this->assertResponse('200', 'Got a 200 OK header.');
+    $this->assertLinkByHref('?q=admin/config/system/inspectlet', 0, 'Inspectlet config found on module page.');
+    $this->assertLink('Configure', 0, 'Link text ok.');
 
     $this->drupalGet('admin/config');
-    $this->assertResponse('200', 'Got a 200 OK header');
-    $this->assertLinkByHref('admin/config/system/inspectlet', 0, 'Inspectlet config found on module page');
-    $this->assertLink('Inspectlet', 0, 'Link text ok');
+    $this->assertResponse('200', 'Got a 200 OK header.');
+    $this->assertLinkByHref('?q=admin/config/system/inspectlet', 0, 'Inspectlet config found on module page.');
+    $this->assertLink('Inspectlet', 0, 'Link text ok.');
+
+    // See if we can post the form.
+    $this->drupalGet('admin/config/system/inspectlet');
+    $this->assertResponse('200', 'Got the right response.');
+
+    $data = array(
+      'inspectlet_code' => "<script>alert('Hello, world!');</script>",
+    );
+    $this->drupalPost('admin/config/system/inspectlet', $data, 'Save configuration');
+    $this->assertText('The configuration options have been saved.', 'Saved configuration successful.');
+
+    // See if the script is placed in the site.
+    $this->drupalLogout();
+    $this->drupalGet('/');
+    $this->assertResponse('200', '200 OK.');
+    $this->assertRaw("alert('Hello, world!');", 'Found the javascript on the page.');
   }
 }
